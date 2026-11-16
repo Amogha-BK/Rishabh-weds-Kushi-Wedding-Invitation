@@ -38,6 +38,11 @@ function Monogram({ className = "" }: { className?: string }) {
     <img
       className={`monogram ${className}`}
       src={config.monogram}
+      srcSet={`${config.monogram.replace('.png', '-480.webp')} 480w, ${config.monogram.replace('.png', '-768.webp')} 768w`}
+      sizes={className.includes('nav-') ? '50px' : className.includes('event-') ? '72px' : '(max-width: 600px) 135px, 180px'}
+      width={180}
+      height={180}
+      decoding="async"
       alt="R and K wedding monogram for Rishabh and Khushi"
     />
   );
@@ -105,7 +110,7 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
           >
             <span className="opening-logo-glow" aria-hidden="true" />
             <span className="opening-logo-orbit" aria-hidden="true" />
-            <img src={config.monogram} alt="" width={180} height={180} fetchPriority="high" />
+            <img src={config.monogram} srcSet={`${config.monogram.replace('.png', '-480.webp')} 480w, ${config.monogram.replace('.png', '-768.webp')} 768w`} sizes="(max-width: 600px) 120px, 180px" alt="" width={180} height={180} fetchPriority="high" decoding="async" />
             {!reducedMotion && <span className="opening-petal-burst" aria-hidden="true">
               {Array.from({ length: 18 }, (_, index) => (
                 <motion.i
@@ -152,7 +157,7 @@ function Wardrobe() {
   <div className="wardrobe-tabs" role="tablist" aria-label="Wardrobe celebrations">{wardrobeLooks.map((item, index) => <button key={item.title} id={'outfit-tab-' + index} role="tab" aria-selected={selected === index} aria-controls="outfit-panel" tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) { event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? 1 : 1 - selected; setSelected(next); document.getElementById('outfit-tab-' + next)?.focus(); } }}>{item.title}</button>)}</div>
   <div className="wardrobe-panel" id="outfit-panel" role="tabpanel" aria-labelledby={'outfit-tab-' + selected} tabIndex={0}>
    <img className="wardrobe-art" src={look.image} alt={look.title + ' outfit illustrations from the supplied wardrobe planner'} loading="lazy" width={350} height={620} decoding="async" />
-   <div className="wardrobe-copy"><p className="eyebrow">{look.date}</p><h3>{look.title}</h3><div className="wardrobe-rule" /><div className="outfit-detail"><span>FOR HIM</span><p>{look.his}</p></div><div className="outfit-detail"><span>FOR HER</span><p>{look.her}</p></div><div className="wardrobe-palette" aria-label="Suggested colour inspiration">{look.colors.map(color => <span key={color} style={{ backgroundColor: color }} />)}<small>A little colour inspiration</small></div><a className="button focus-ring" href="/assets/wardrobe-planner.pdf" download>Save the wardrobe planner</a></div>
+   <div className="wardrobe-copy"><p className="eyebrow">{look.date}</p><h3>{look.title}</h3><div className="wardrobe-rule" /><div className="outfit-detail"><span>FOR HIM</span><p>{look.his}</p></div><div className="outfit-detail"><span>FOR HER</span><p>{look.her}</p></div><div className="wardrobe-palette" aria-label="Suggested colour inspiration">{look.colors.map(color => <span key={color} style={{ backgroundColor: color }} />)}<small>A little colour inspiration</small></div><a className="button focus-ring" href="/assets/wardrobe-planner-mobile.pdf" download>Save the wardrobe planner</a></div>
   </div>
  </section>;
 }
@@ -225,7 +230,7 @@ function MusicControl({ canPlay, audio }: { canPlay: boolean; audio: React.RefOb
         <audio
           ref={audio}
           src={config.optional.musicUrl}
-          preload="metadata"
+          preload="none"
           loop
           onPlay={() => setPlaying(true)}
           onPause={() => setPlaying(false)}
@@ -280,8 +285,8 @@ function Navigation() {
   }, [open]);
   return (
     <nav className="site-nav" aria-label="Invitation navigation">
-      <a className="nav-mark focus-ring" href="#our-wedding" aria-label="Home" onClick={() => setOpen(false)}>
-        R <span>&</span> K
+      <a className="nav-mark focus-ring" href="#our-wedding" aria-label="Rishabh and Khushi, home" onClick={() => setOpen(false)}>
+        <Monogram className="nav-monogram" />
       </a>
       <div id="invitation-navigation" className={`nav-links ${open ? "nav-links-open" : ""}`}>
         {navItems.map(([label, id]) => (
@@ -377,17 +382,18 @@ function EventLocation({ event, className }: { event: Celebration; className: st
 }
 
 function EventCard({ event, index }: { event: Celebration; index: number }) {
+  const reducedMotion = useReducedMotion();
   return (
     <motion.article
       id={event.id}
       className={`event-card scene-${event.scene}`}
-      initial={{ opacity: 0, y: 36 }}
+      initial={reducedMotion ? false : { opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.8, delay: index * 0.08 }}
+      transition={{ duration: reducedMotion ? 0 : 0.35, delay: reducedMotion ? 0 : index * 0.03 }}
     >
       <div className="event-portrait">
-      <img src={event.image} alt="" loading="lazy" decoding="async" width={1024} height={1536} />
+      <img src={event.image} srcSet={`${event.image.replace('.png', '-480.webp')} 480w, ${event.image.replace('.png', '-768.webp')} 768w, ${event.image.replace('.png', '-1024.webp')} 1024w`} sizes="(max-width: 600px) calc(100vw - 44px), 620px" alt="" loading="lazy" decoding="async" width={1024} height={1536} />
       <div className="event-content">
         <span className="event-number">Rishabh &amp; Khushi · Celebration {String(index + 1).padStart(2, "0")}</span>
         <h3>{event.shortName}</h3>
@@ -395,13 +401,16 @@ function EventCard({ event, index }: { event: Celebration; index: number }) {
         <div className="event-details">
           <strong>{event.dateLabel}</strong>
           <span>{event.timeLabel}</span>
+          {event.additionalTime && <span>{event.additionalTime}</span>}
           {event.phereTime && <span>Phere: {event.phereTime}</span>}
         </div>
         <EventLocation event={event} className="event-location-in-card" />
       </div>
       </div>
+      <Monogram className="event-monogram" />
       <EventLocation event={event} className="event-location-mobile" />
       <p className="event-line">{event.supportingLine}</p>
+      {event.mealNote && <p className="event-meal-note">{event.mealNote}</p>}
     </motion.article>
   );
 }
@@ -772,7 +781,7 @@ export default function App() {
         <section className="celebrations-section" id="celebrations">
           <Monogram className="celebrations-monogram" />
           <Invocation className="programme-invocation" />
-          <SectionHeading eyebrow="25–26 November 2026">Two celebrations, a lifetime of love</SectionHeading>
+          <SectionHeading eyebrow="25–26 November 2026">Five celebrations, a lifetime of love</SectionHeading>
           <div className="events">
             {config.celebrations.map((event, index) => (
               <EventCard key={event.id} event={event} index={index} />
