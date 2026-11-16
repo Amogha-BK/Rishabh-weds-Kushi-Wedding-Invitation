@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600&family=Noto+Serif+Devanagari:wght@400;500&display=swap");
 @import "tailwindcss";
 
 :root {
@@ -6,9 +6,9 @@
   --ivory-deep: #ede3d3;
   --gold: #ab852e;
   --gold-light: #d7c49f;
-  --taupe: #752c27;
+  --taupe: #697455;
   --sage: #87917b;
-  --sage-deep: #75652e;
+  --sage-deep: #697455;
   --blush: #d8bcae;
   --ink: #40372f;
   --paper: #faf6ee;
@@ -1784,4 +1784,69 @@ footer { padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px)); }
   .opening-date-line { margin-top: 0.75rem; }
   .opening-song-note { margin-top: 0.5rem; }
   .opening-tap-hint { display: none; }
+}
+
+/* Rishabh & Khushi: ivory palace stationery, antique gold and sage lotus. */
+:root { --ivory: #faf3e8; --ivory-deep: #f0e2ce; --gold: #b18b50; --gold-light: #d8c3a2; --sage: #697455; --paper: #fff9ef; }
+.invitation, .opening-gate { background-color: var(--ivory); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='84' viewBox='0 0 64 84'%3E%3Cpath d='M32 0C32 14 0 9 0 21S32 28 32 42 64 51 64 63 32 70 32 84M32 0C32 14 64 9 64 21S32 28 32 42 0 51 0 63 32 70 32 84' fill='none' stroke='%23b18b50' stroke-opacity='.12' stroke-width='.7'/%3E%3C/svg%3E"); }
+.opening-floral-backdrop { background-image: url('/assets/reception-filler.png'); opacity: .22; }
+.opening-names, .hero h1, .invitation-families h2 { font-family: var(--font-display); }
+.opening-names { font-size: clamp(2.2rem, 6vw, 4.5rem); }
+.opening-logo-button img { mix-blend-mode: multiply; }
+.hero { padding-bottom: 5rem; min-height: 0; }
+.hero-inner { padding: 3rem 1.25rem 2rem; border: 1px solid var(--gold-light); outline: 5px double var(--gold-light); outline-offset: 10px; border-radius: 45% 45% 0 0 / 17% 17% 0 0; background: linear-gradient(135deg, #ead7b980, #fff8eddd 45%, #ead7b940); }
+.hero-artwork { display: none; }
+.hero h1 { font-size: clamp(3rem, 10vw, 6rem); }
+.hero-monogram { width: 180px; height: 180px; }
+.family-section .family-memory { font-style: italic; color: var(--gold); }
+.family-section > div:not(.edge-flower) > p:not(.family-memory):not(.family-invocation):not(.family-blessing) { font-size: clamp(1.2rem, 3vw, 1.65rem); }
+.countdown-section { background: #e8e7d8; border-block: 1px solid #cacdb6; }
+.countdown-clock { display: none; }
+.event-portrait > img { object-fit: cover; }
+.event-content { inset: 24% 14% 24%; }
+.event-card h3 { color: #79553b; font-size: clamp(28px, 9cqi, 48px); }
+.event-details { margin-top: 1rem; border-block: 1px solid #b795573d; }
+.event-location-in-card { display: none; }
+.event-location-mobile { display: flex; flex-direction: column; gap: .5rem; align-items: center; padding: 1.6rem 1.5rem 0; text-align: center; font-size: .9rem; }
+.event-location-mobile .event-venue { font-size: 1.8rem; }
+.event-location-mobile .event-actions { width: 100%; margin-top: 1rem; }
+.event-location-mobile .button { min-height: 48px; }
+.event-line { margin-top: 1.5rem; }
+.venue-section::before { background-image: url('/assets/reception-filler.png'); opacity: .14; }
+.wardrobe-section { padding: 5rem 1.5rem; background: #faf6ee; }
+.wardrobe-intro { text-align: center; color: #8a745b; font: italic 1.4rem/1.5 var(--font-display); margin: 1.2rem auto 2rem; max-width: 500px; }
+.wardrobe-tabs { display: flex; justify-content: center; margin: 2rem auto 2.5rem; }
+.wardrobe-tabs button { padding: 1rem 1.3rem; min-height: 48px; border-bottom: 1px solid var(--gold-light); color: #8a745b; font-size: .75rem; }
+.wardrobe-tabs button[aria-selected=true] { color: var(--sage-deep); border-color: var(--sage-deep); background: #e9e8db; }
+.wardrobe-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; align-items: center; max-width: 800px; margin: auto; }
+.wardrobe-art { display: block; width: 100%; height: auto; padding: 8px; border: 1px solid var(--gold-light); background: #f4e5d6; }
+.wardrobe-copy h3 { font: 400 2.75rem/1.1 var(--font-display); color: var(--sage-deep); margin: 1rem 0; }
+.wardrobe-copy .eyebrow { font-size: .65rem; }
+.wardrobe-rule { width: 70px; height: 1px; background: var(--gold-light); margin: 1.5rem 0; }
+.outfit-detail { margin: 1.5rem 0; }
+.outfit-detail span { font-size: .6rem; letter-spacing: .2em; color: var(--gold); }
+.outfit-detail p { font: 1.5rem/1.3 var(--font-display); margin-top: .5rem; }
+.wardrobe-palette { display: flex; gap: 9px; flex-wrap: wrap; margin: 2rem 0; }
+.wardrobe-palette > span { width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; outline: 1px solid #d9ceb9; }
+.wardrobe-palette small { flex-basis: 100%; font-size: .6rem; margin-top: 5px; color: #8a745b; }
+.wardrobe-copy .button { font-size: .65rem; padding-inline: 1rem; }
+@media (max-width: 600px) {
+ .hero { padding: 7rem 2rem 4rem; }
+ .hero-inner { padding: 2.5rem .6rem 1.5rem; }
+ .hero h1 { font-size: clamp(2.4rem, 10vw, 3.5rem); }
+ .hero-monogram { width: 135px; height: 135px; }
+ .opening-names { font-size: clamp(1.75rem, 7vw, 2.75rem); }
+ .event-content { inset: 24% 13% 24%; }
+ .event-card h3 { font-size: 9cqi; }
+ .event-subtitle { font-size: 4.8cqi; }
+ .event-details { font-size: 3.4cqi; margin-top: .5rem; }
+ .event-number { font-size: 2.1cqi; }
+ .wardrobe-section { padding: 3.5rem 1.25rem; }
+ .wardrobe-panel { grid-template-columns: 1fr; gap: 2rem; max-width: 400px; }
+ .wardrobe-art { max-width: 310px; margin: auto; }
+ .wardrobe-copy { text-align: center; }
+ .wardrobe-copy h3 { font-size: 2.4rem; }
+ .wardrobe-rule { margin-inline: auto; }
+ .wardrobe-palette { justify-content: center; }
+ .wardrobe-tabs button { font-size: .65rem; padding: .9rem; }
 }

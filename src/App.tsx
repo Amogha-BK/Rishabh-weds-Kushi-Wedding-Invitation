@@ -27,6 +27,7 @@ const indiaClock = new Intl.DateTimeFormat("en-GB", {
 const navItems = [
   ["Our Wedding", "our-wedding"],
   ["Celebrations", "celebrations"],
+  ["Wardrobe", "wardrobe"],
   ["Venue", "venue"],
   ["Contact", "contact"],
 ] as const;
@@ -37,9 +38,13 @@ function Monogram({ className = "" }: { className?: string }) {
     <img
       className={`monogram ${className}`}
       src={config.monogram}
-      alt="S and H wedding monogram for Shristi and Harsh"
+      alt="R and K wedding monogram for Rishabh and Khushi"
     />
   );
+}
+
+function Invocation({ className = "" }: { className?: string }) {
+  return <p className={`invocation ${className}`} lang="sa"><span>॥ श्री गणेशाय नमः ॥</span><span>॥ श्री महावीराय नमः ॥</span></p>;
 }
 
 function InvitationOpening({ onOpen }: { onOpen: () => void }) {
@@ -54,7 +59,7 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
   return (
     <motion.section
       className="invitation-opening"
-      aria-label="Open Shristi and Harsh’s wedding invitation"
+      aria-label="Open Rishabh and Khushi’s wedding invitation"
       initial={{ opacity: 1 }}
       exit={{ opacity: reducedMotion ? 0 : [1, 1, 0] }}
       transition={{ duration: reducedMotion ? 0.15 : 1.65, times: [0, 0.9, 1], ease: "easeInOut" }}
@@ -92,7 +97,7 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
             onClick={onOpen}
             disabled={!isPresent}
             autoFocus
-            aria-label="Open Shristi and Harsh’s wedding invitation"
+            aria-label="Open Rishabh and Khushi’s wedding invitation"
             whileHover={reducedMotion ? undefined : { scale: 1.09, rotate: -3 }}
             whileTap={reducedMotion ? undefined : { scale: 0.9, rotate: 2 }}
             exit={reducedMotion ? { opacity: 0 } : { scale: [1, 0.92, 1.18], opacity: [1, 1, 0], rotate: [0, -5, 3] }}
@@ -125,14 +130,32 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
         <p className="opening-instruction">Tap the monogram</p>
         <p className="opening-whisper">to open our invitation</p>
         <p className="opening-song-note"><Music size={11} aria-hidden="true" /> Opens with Kudmayi</p>
-        <div className="opening-date-line"><span />10 December 2026<span /></div>
-        <p className="opening-location">Indirapuram</p>
+        <div className="opening-date-line"><span />26 November 2026<span /></div>
+        <p className="opening-location">Jodhpur</p>
         </motion.div>
       </div>
     </motion.section>
   );
 }
 
+
+const wardrobeLooks = [
+ { title: 'Carnival of Joy', date: '25 November 2026', image: '/assets/wardrobe-carnival.png', his: 'Printed shirts, stylish jackets, kurta sets', her: 'Fusion dresses, shararas, Indo-western co-ords', colors: ['#e5a9b7', '#d95869', '#e4bb60', '#9ba67a'] },
+ { title: 'Baraat Welcome & Phere', date: '26 November 2026', image: '/assets/wardrobe-phere.png', his: 'Jacket kurta / sherwani', her: 'Lehenga, traditional Indian attire', colors: ['#e3d4bc', '#b88365', '#843c43', '#c3a36a'] },
+];
+function Wardrobe() {
+ const [selected, setSelected] = useState(0);
+ const look = wardrobeLooks[selected];
+ return <section className="wardrobe-section" id="wardrobe">
+  <SectionHeading eyebrow="A little inspiration for your suitcase">The wardrobe collection</SectionHeading>
+  <p className="wardrobe-intro">Dress up in style, celebrate with joy & make memories forever.</p>
+  <div className="wardrobe-tabs" role="tablist" aria-label="Wardrobe celebrations">{wardrobeLooks.map((item, index) => <button key={item.title} id={'outfit-tab-' + index} role="tab" aria-selected={selected === index} aria-controls="outfit-panel" tabIndex={selected === index ? 0 : -1} onClick={() => setSelected(index)} onKeyDown={event => { if (['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) { event.preventDefault(); const next = event.key === 'Home' ? 0 : event.key === 'End' ? 1 : 1 - selected; setSelected(next); document.getElementById('outfit-tab-' + next)?.focus(); } }}>{item.title}</button>)}</div>
+  <div className="wardrobe-panel" id="outfit-panel" role="tabpanel" aria-labelledby={'outfit-tab-' + selected} tabIndex={0}>
+   <img className="wardrobe-art" src={look.image} alt={look.title + ' outfit illustrations from the supplied wardrobe planner'} loading="lazy" width={350} height={620} decoding="async" />
+   <div className="wardrobe-copy"><p className="eyebrow">{look.date}</p><h3>{look.title}</h3><div className="wardrobe-rule" /><div className="outfit-detail"><span>FOR HIM</span><p>{look.his}</p></div><div className="outfit-detail"><span>FOR HER</span><p>{look.her}</p></div><div className="wardrobe-palette" aria-label="Suggested colour inspiration">{look.colors.map(color => <span key={color} style={{ backgroundColor: color }} />)}<small>A little colour inspiration</small></div><a className="button focus-ring" href="/assets/wardrobe-planner.pdf" download>Save the wardrobe planner</a></div>
+  </div>
+ </section>;
+}
 
 function MusicControl({ canPlay, audio }: { canPlay: boolean; audio: React.RefObject<HTMLAudioElement | null> }) {
   const userControlled = useRef(false);
@@ -258,7 +281,7 @@ function Navigation() {
   return (
     <nav className="site-nav" aria-label="Invitation navigation">
       <a className="nav-mark focus-ring" href="#our-wedding" aria-label="Home" onClick={() => setOpen(false)}>
-        S <span>&</span> H
+        R <span>&</span> K
       </a>
       <div id="invitation-navigation" className={`nav-links ${open ? "nav-links-open" : ""}`}>
         {navItems.map(([label, id]) => (
@@ -311,8 +334,8 @@ function Countdown() {
   return (
     <div>
       <p className="countdown-label">{remaining.complete ? "Our wedding day is here!" : "Counting down to our wedding day"}</p>
-      <p className="countdown-target"><time dateTime={config.countdownTarget}>10 December 2026 · 12:00 a.m. IST</time></p>
-      <div className="countdown" role="timer" aria-label="Time remaining until midnight at the start of 10 December 2026, Indian Standard Time">
+      <p className="countdown-target"><time dateTime={config.countdownTarget}>26 November 2026 · 12:00 a.m. IST</time></p>
+      <div className="countdown" role="timer" aria-label="Time remaining until midnight at the start of 26 November 2026, Indian Standard Time">
         {values.map(([label, value]) => (
           <div key={label}>
             <strong>{String(value).padStart(2, "0")}</strong>
@@ -366,9 +389,9 @@ function EventCard({ event, index }: { event: Celebration; index: number }) {
       <div className="event-portrait">
       <img src={event.image} alt="" loading="lazy" decoding="async" width={1024} height={1536} />
       <div className="event-content">
-        <span className="event-number">Shristi &amp; Harsh · Celebration {String(index + 1).padStart(2, "0")}</span>
+        <span className="event-number">Rishabh &amp; Khushi · Celebration {String(index + 1).padStart(2, "0")}</span>
         <h3>{event.shortName}</h3>
-        <p className="event-subtitle">{event.title.split(" — ")[1]}</p>
+        <p className="event-subtitle">{event.subtitle}</p>
         <div className="event-details">
           <strong>{event.dateLabel}</strong>
           <span>{event.timeLabel}</span>
@@ -567,7 +590,7 @@ function RSVP() {
         </AnimatePresence>
         <label className="field">
           <span>
-            Message for Shristi &amp; Harsh <em>Optional</em>
+            Message for Rishabh &amp; Khushi <em>Optional</em>
           </span>
           <textarea
             rows={4}
@@ -689,7 +712,7 @@ export default function App() {
         <section className="hero" id="our-wedding">
           <div className="paper-grain" />
           <div className="hero-inner">
-            <p className="ganesh-invocation">॥ Shri Ganeshaya Namah ॥</p>
+            <Invocation className="ganesh-invocation" />
             <Monogram className="hero-monogram" />
             <p className="eyebrow">The wedding celebrations of</p>
             <h1 ref={invitationHeading} tabIndex={-1}>
@@ -703,7 +726,7 @@ export default function App() {
                 {config.couple.secondParents && <p>{config.couple.secondParents}</p>}
               </div>
             )}
-            <div className="hero-date">{config.weddingLabel}</div>
+            <div className="hero-date"><time dateTime="2026-11-26">26 November 2026</time><span className="date-divider" aria-hidden="true" /><span>Jodhpur</span></div>
           </div>
           <div className="hero-artwork" aria-hidden="true">
             <img src={config.artwork} alt="" fetchPriority="high" />
@@ -717,7 +740,7 @@ export default function App() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
           >
-            <p className="ganesh-invocation family-invocation">॥ Shri Ganeshaya Namah ॥</p>
+            <Invocation className="ganesh-invocation family-invocation" />
             <p className="family-memory">{config.memorialLine}</p>
             <p>{config.invitationLine}</p>
             <div className="invitation-families" aria-label="The couple and their families">
@@ -748,14 +771,16 @@ export default function App() {
 
         <section className="celebrations-section" id="celebrations">
           <Monogram className="celebrations-monogram" />
-          <p className="programme-invocation">॥ Shri Ganeshaya Namah ॥</p>
-          <SectionHeading eyebrow="9–10 December 2026">Three celebrations, a lifetime of love</SectionHeading>
+          <Invocation className="programme-invocation" />
+          <SectionHeading eyebrow="25–26 November 2026">Two celebrations, a lifetime of love</SectionHeading>
           <div className="events">
             {config.celebrations.map((event, index) => (
               <EventCard key={event.id} event={event} index={index} />
             ))}
           </div>
         </section>
+
+        <Wardrobe />
 
         <section className="venue-section" id="venue">
           <div className="venue-content">
