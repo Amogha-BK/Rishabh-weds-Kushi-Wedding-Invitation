@@ -1,0 +1,139 @@
+/* Reference PDF palette only. Layout, typography and imagery stay unchanged. */
+:root {
+  --ivory: #f1e2cc;
+  --ivory-deep: #dfbf94;
+  --paper: #f8ebd7;
+  --sage: #6b754b;
+  --sage-deep: #505c36;
+  --taupe: #6b754b;
+  --gold: #a5752d;
+  --gold-light: #c3955d;
+  --blush: #dfbca4;
+  --ink: #514536;
+}
+.site-nav { background-color: rgb(247 238 223 / .94); border-bottom-color: #d5b58b; }
+.nav-links { background-color: rgb(247 238 223 / .98); border-bottom-color: #d5b58b; }
+.opening-names, .hero h1, .invitation-families h2 { color: #697455; }
+.opening-kicker, .opening-location, .opening-whisper, .opening-instruction { color: #76644e; }
+.ganesh-invocation, .programme-invocation, .family-section .family-invocation { color: #a77b36; }
+.hero-date { color: #806043; border-color: #d5b58b; }
+.parent-lines { color: #65533e; }
+.family-section .family-memory, .family-section .family-blessing { color: #a16c45; }
+.family-weds, .invitation-regards h3 { color: #a16c45; }
+.countdown-section { background-color: #eeead9; border-color: #c6c8ae; }
+.countdown strong, .section-heading h2 { color: #697455; }
+.countdown-label, .countdown-target { color: #746245; }
+.event-card { background-color: #fff8ec; border-color: #d5b58b; }
+.event-card h3 { color: #8d5c3c; }
+.event-number, .event-subtitle { color: #987449; }
+.event-details { color: #554a3b; border-color: rgb(170 128 61 / .3); }
+.event-line { color: #94734e; }
+.event-location-mobile .event-venue { color: #697455; }
+.event-actions .button { color: #76603c; border-color: #ac884b; background-color: rgb(255 248 236 / .88); }
+.event-meal-note { color: #697455; }
+.wardrobe-section { background-color: #f8f0e3; }
+.wardrobe-intro, .outfit-detail span { color: #a16c45; }
+.wardrobe-copy h3 { color: #697455; }
+.wardrobe-tabs button { color: #8e6c47; border-bottom-color: #d5b58b; }
+.wardrobe-tabs button[aria-selected=true] { color: #5d684b; background-color: #e6e7d6; border-bottom-color: #697455; }
+.wardrobe-art { border-color: #d5b58b; background-color: #efdfca; }
+.icon-button { color: #697455; border-color: #d5b58b; background-color: rgb(255 248 236 / .94); }
+.button-solid { color: #fff8ec; background-color: #697455; border-color: #697455; }
+.contact-numbers, .family-contacts a { color: #697455; }
+@media (min-width: 800px) { .nav-links { background-color: transparent; } }
+
+/* Replace older white gradients so the reference palette reaches each surface.
+   Every declaration below changes colour only; no geometry or type changes. */
+body { background-color: #f1e2cc; color: #58452d; }
+.invitation { background-color: #f1e2cc; }
+.site-nav { background-color: rgb(239 222 196 / .96); border-bottom-color: #bc925b; }
+.nav-links { background-color: rgb(243 229 207 / .98); }
+.nav-links a, .nav-mark { color: #59663d; }
+.hero { background: radial-gradient(ellipse at 50% 36%, #f9edd7, transparent 65%), linear-gradient(180deg, #ecd5b3, #f1e2cc); }
+.hero-inner { background: linear-gradient(135deg, #dfbd8e80, #f8ead1ed 48%, #e2c39780); border-color: #b98b4f; outline-color: #c89c65; }
+.hero h1, .opening-names, .invitation-families h2 { color: #6b754b; }
+.hero .eyebrow, .section-heading > span { color: #9a6c29; }
+.hero-date { color: #8c5e32; border-color: #c29459; }
+.parent-lines { color: #6c5134; }
+.opening-gate { background-color: #ecd3af; }
+.opening-stationery-frame { border-color: #b48848; outline-color: #cba06c; }
+.opening-flower, .opening-tap-hint { color: #9e722e; }
+.opening-kicker, .opening-instruction, .opening-whisper, .opening-location, .opening-song-note { color: #715632; }
+.opening-date-line { color: #815e30; }
+.opening-date-line > span { background-color: #b88d52; }
+.family-section { background-color: #f5e7d0; }
+.family-section .family-memory, .family-section .family-blessing, .family-weds { color: #a66d40; }
+.family-section .invitation-regards h3 { color: #95672e; }
+.family-section .invitation-regards { border-top-color: #cba36b; }
+.countdown-section { background: linear-gradient(135deg, #657044, #535f37); border-color: #ab8e50; }
+.countdown-section .section-heading h2, .countdown-section .countdown strong { color: #fff0d6; }
+.countdown-section .section-heading > span, .countdown-section .countdown-label, .countdown-section .countdown-target, .countdown-section .countdown span { color: #efcea0; }
+.countdown-section .countdown > div { background-color: #ecdbb414; border-color: #d1b07866; }
+.countdown-section .botanical-rule { color: #e4bc80; }
+.countdown-section .botanical-rule i { background-color: #d2af75; }
+.celebrations-section { background-color: #efddc1; }
+.celebrations-section .section-heading h2 { color: #637044; }
+.event-card { background-color: #f6e5c9; border-color: #bf945a; }
+.event-card h3 { color: #8d5c32; }
+.event-subtitle, .event-number { color: #94682f; }
+.event-details { color: #60482b; border-color: #b68b4f66; }
+.event-location-mobile { color: #725635; }
+.event-location-mobile .event-venue { color: #627043; }
+.event-line { color: #956c3f; }
+.event-meal-note { color: #637044; }
+.event-actions .button { color: #fff0d6; background-color: #6b754b; border-color: #626c43; }
+.event-actions .button:hover { background-color: #56623b; }
+.wardrobe-section { background-color: #e2e3cd; }
+.wardrobe-copy h3, .wardrobe-section .section-heading h2 { color: #5d6a3f; }
+.wardrobe-intro, .wardrobe-copy .eyebrow, .outfit-detail span { color: #99703a; }
+.wardrobe-tabs button { color: #796035; border-bottom-color: #b99a61; }
+.wardrobe-tabs button[aria-selected=true] { color: #fff0d6; background-color: #6b754b; border-bottom-color: #6b754b; }
+.wardrobe-rule { background-color: #b89458; }
+.venue-section { background-color: #efddbf; }
+.venue-content h3, .venue-content .section-heading h2 { color: #627043; }
+.venue-content > p { color: #785a35; }
+.button-solid { background-color: #687344; border-color: #687344; color: #fff0d6; }
+.button-solid:hover { background-color: #505c36; }
+footer { background-color: #535f37; background-image: none; color: #fff3de; }
+footer .closing-copy > p,
+footer .closing-copy .closing-message,
+footer .contact-numbers,
+footer .contact-label,
+footer .family-contacts a { color: #fff3de; }
+footer .closing-copy > span,
+footer .contact-separator { color: #ffe0a5; }
+footer .closing-rule { background-color: #cba56c; }
+footer .closing-copy > .monogram {
+  background-color: #fff3de;
+  border: 1px solid #d5b58b;
+  border-radius: 50%;
+  padding: 9px;
+  box-shadow: 0 0 0 5px rgb(255 243 222 / .12);
+  mix-blend-mode: normal;
+}
+.icon-button { color: #5d6a3f; background-color: rgb(248 235 211 / .97); border-color: #b99156; }
+@media (min-width: 800px) { .nav-links { background-color: transparent; } }
+
+/* Highlight the reference's parchment-and-gold background only. */
+body,
+.invitation,
+.opening-gate,
+.family-section,
+.celebrations-section,
+.wardrobe-section,
+.venue-section {
+  background-image: url('/assets/invitation-paper-pattern.svg');
+  background-size: 96px 128px;
+  background-repeat: repeat;
+}
+.hero {
+  background-image: url('/assets/invitation-paper-pattern.svg'), radial-gradient(ellipse at 50% 36%, #f9edd7, transparent 65%), linear-gradient(180deg, #ecd5b3, #f1e2cc);
+  background-size: 96px 128px, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+.hero-inner {
+  background-image: url('/assets/invitation-paper-pattern.svg'), linear-gradient(135deg, #ecd6b5, #f6e7cc 48%, #eed8b9);
+  background-size: 96px 128px, auto;
+  background-repeat: repeat, no-repeat;
+}
+

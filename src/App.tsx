@@ -1,20 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import * as Dialog from "@radix-ui/react-dialog";
 import {
-  Check,
-  Clipboard,
   Flower2,
   MapPin,
   Menu,
   Music,
   Pause,
   Pointer,
-  Send,
   Volume2,
   VolumeX,
   X,
 } from "lucide-react";
-import { AnimatePresence, motion, useIsPresent, useReducedMotion } from "motion/react";
+import { AnimatePresence, m, useIsPresent, useReducedMotion } from "motion/react";
 import { Celebration, invitationConfig as config } from "./invitationConfig";
 import { getCountdownParts } from "./countdown";
 
@@ -62,7 +58,7 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
     event.currentTarget.style.setProperty("--seal-y", `${((event.clientY - bounds.top) / bounds.height - 0.5) * 12}px`);
   };
   return (
-    <motion.section
+    <m.section
       className="invitation-opening"
       aria-label="Open Rishabh and Khushi’s wedding invitation"
       initial={{ opacity: 1 }}
@@ -75,7 +71,7 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
       }}
     >
       {[-1, 1].map((direction) => (
-        <motion.div
+        <m.div
           key={direction}
           className={`opening-gate ${direction < 0 ? "opening-gate-left" : "opening-gate-right"}`}
           aria-hidden="true"
@@ -83,20 +79,20 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
           transition={{ duration: reducedMotion ? 0.15 : 1.15, delay: reducedMotion ? 0 : 0.3, ease: [0.65, 0, 0.2, 1] }}
         />
       ))}
-      <motion.div className="opening-floral-backdrop" aria-hidden="true" exit={{ opacity: 0 }} transition={{ duration: 0.5 }} />
-      <motion.div className="paper-grain" aria-hidden="true" exit={{ opacity: 0 }} transition={{ duration: 0.4 }} />
-      <motion.div className="opening-stationery-frame" aria-hidden="true" exit={{ opacity: 0, scale: reducedMotion ? 1 : 1.04 }} transition={{ duration: 0.45 }} />
-      <motion.div className="opening-sparkles" aria-hidden="true" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
+      <m.div className="opening-floral-backdrop" aria-hidden="true" exit={{ opacity: 0 }} transition={{ duration: 0.5 }} />
+      <m.div className="paper-grain" aria-hidden="true" exit={{ opacity: 0 }} transition={{ duration: 0.4 }} />
+      <m.div className="opening-stationery-frame" aria-hidden="true" exit={{ opacity: 0, scale: reducedMotion ? 1 : 1.04 }} transition={{ duration: 0.45 }} />
+      <m.div className="opening-sparkles" aria-hidden="true" exit={{ opacity: 0 }} transition={{ duration: 0.5 }}>
         {Array.from({ length: 8 }, (_, index) => <i key={index} />)}
-      </motion.div>
+      </m.div>
       <div className="opening-welcome">
-        <motion.div exit={{ opacity: 0, y: reducedMotion ? 0 : -18 }} transition={{ duration: 0.35 }}>
+        <m.div exit={{ opacity: 0, y: reducedMotion ? 0 : -18 }} transition={{ duration: 0.35 }}>
         <Flower2 className="opening-flower" strokeWidth={1} aria-hidden="true" />
         <p className="opening-kicker">A celebration of love &amp; togetherness</p>
-        </motion.div>
+        </m.div>
         <h1 className="opening-names">
-          <motion.span exit={{ opacity: 0, x: reducedMotion ? 0 : -45 }} transition={{ duration: 0.45 }}>{config.couple.first}</motion.span>
-          <motion.button
+          <m.span exit={{ opacity: 0, x: reducedMotion ? 0 : -45 }} transition={{ duration: 0.45 }}>{config.couple.first}</m.span>
+          <m.button
             type="button"
             className="opening-logo-button focus-ring"
             onClick={onOpen}
@@ -113,7 +109,7 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
             <img src={config.monogram} srcSet={`${config.monogram.replace('.png', '-480.webp')} 480w, ${config.monogram.replace('.png', '-768.webp')} 768w`} sizes="(max-width: 600px) 120px, 180px" alt="" width={180} height={180} fetchPriority="high" decoding="async" />
             {!reducedMotion && <span className="opening-petal-burst" aria-hidden="true">
               {Array.from({ length: 18 }, (_, index) => (
-                <motion.i
+                <m.i
                   key={index}
                   initial={{ opacity: 0, x: 0, y: 0, scale: 0.3 }}
                   exit={{
@@ -127,19 +123,19 @@ function InvitationOpening({ onOpen }: { onOpen: () => void }) {
                 />
               ))}
             </span>}
-          </motion.button>
-          <motion.span exit={{ opacity: 0, x: reducedMotion ? 0 : 45 }} transition={{ duration: 0.45 }}>{config.couple.second}</motion.span>
+          </m.button>
+          <m.span exit={{ opacity: 0, x: reducedMotion ? 0 : 45 }} transition={{ duration: 0.45 }}>{config.couple.second}</m.span>
         </h1>
-        <motion.div exit={{ opacity: 0, y: reducedMotion ? 0 : 14 }} transition={{ duration: 0.3 }}>
+        <m.div exit={{ opacity: 0, y: reducedMotion ? 0 : 14 }} transition={{ duration: 0.3 }}>
         <Pointer className="opening-tap-hint" strokeWidth={1.2} aria-hidden="true" />
         <p className="opening-instruction">Tap the monogram</p>
         <p className="opening-whisper">to open our invitation</p>
         <p className="opening-song-note"><Music size={11} aria-hidden="true" /> Opens with Kudmayi</p>
         <div className="opening-date-line"><span />26 November 2026<span /></div>
         <p className="opening-location">Jodhpur</p>
-        </motion.div>
+        </m.div>
       </div>
-    </motion.section>
+    </m.section>
   );
 }
 
@@ -384,7 +380,7 @@ function EventLocation({ event, className }: { event: Celebration; className: st
 function EventCard({ event, index }: { event: Celebration; index: number }) {
   const reducedMotion = useReducedMotion();
   return (
-    <motion.article
+    <m.article
       id={event.id}
       className={`event-card scene-${event.scene}`}
       initial={reducedMotion ? false : { opacity: 0, y: 18 }}
@@ -411,246 +407,7 @@ function EventCard({ event, index }: { event: Celebration; index: number }) {
       <EventLocation event={event} className="event-location-mobile" />
       <p className="event-line">{event.supportingLine}</p>
       {event.mealNote && <p className="event-meal-note">{event.mealNote}</p>}
-    </motion.article>
-  );
-}
-
-type RSVPData = {
-  name: string;
-  attendance: "yes" | "no";
-  guests: string;
-  celebrations: string[];
-  dietary: string;
-  message: string;
-};
-
-function RSVP() {
-  const [data, setData] = useState<RSVPData>({
-    name: "",
-    attendance: "yes",
-    guests: "1",
-    celebrations: [],
-    dietary: "",
-    message: "",
-  });
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const [preview, setPreview] = useState("");
-  const [dialogOpen, setDialogOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const toggleCelebration = (label: string) => {
-    setData((current) => ({
-      ...current,
-      celebrations: current.celebrations.includes(label)
-        ? current.celebrations.filter((item) => item !== label)
-        : [...current.celebrations, label],
-    }));
-  };
-
-  const buildMessage = () => {
-    const attending = data.attendance === "yes";
-    const lines = [
-      `RSVP for ${config.couple.first} & ${config.couple.second}`,
-      "",
-      `Name: ${data.name.trim()}`,
-      `Attendance: ${attending ? "Joyfully attending" : "Sending our wishes"}`,
-    ];
-    if (attending) {
-      lines.push(
-        `Guests (including me): ${data.guests}`,
-        `Celebrations: ${data.celebrations.join(", ")}`,
-      );
-      if (data.dietary.trim()) lines.push(`Dietary requirements: ${data.dietary.trim()}`);
-    }
-    if (data.message.trim()) lines.push(`Message: ${data.message.trim()}`);
-    return lines.join("\n");
-  };
-
-  const submit = (event: React.FormEvent) => {
-    event.preventDefault();
-    const nextErrors: Record<string, string> = {};
-    if (!data.name.trim()) nextErrors.name = "Please enter your full name.";
-    if (data.attendance === "yes") {
-      const guests = Number(data.guests);
-      if (!Number.isInteger(guests) || guests < 1)
-        nextErrors.guests = "Please enter at least one guest.";
-      if (!data.celebrations.length)
-        nextErrors.celebrations = "Please choose at least one celebration.";
-    }
-    setErrors(nextErrors);
-    if (Object.keys(nextErrors).length) return;
-    setPreview(buildMessage());
-    setDialogOpen(true);
-  };
-
-  const sendWhatsApp = () => {
-    if (!config.optional.whatsappHostNumber) return;
-    const number = String(config.optional.whatsappHostNumber).replace(/\D/g, "");
-    window.open(
-      `https://wa.me/${number}?text=${encodeURIComponent(preview)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
-  };
-
-  const copyMessage = async () => {
-    await navigator.clipboard.writeText(preview);
-    setCopied(true);
-    window.setTimeout(() => setCopied(false), 1800);
-  };
-
-  const attending = data.attendance === "yes";
-  return (
-    <>
-      <form className="rsvp-form" onSubmit={submit} noValidate>
-        <label className="field">
-          <span>
-            Full name <b>*</b>
-          </span>
-          <input
-            value={data.name}
-            onChange={(event) => setData({ ...data, name: event.target.value })}
-            aria-invalid={Boolean(errors.name)}
-            placeholder="Your full name"
-          />
-          {errors.name && <small className="error">{errors.name}</small>}
-        </label>
-        <fieldset>
-          <legend>Will you be joining us?</legend>
-          <div className="choice-grid two">
-            {[
-              ["yes", "Joyfully attending"],
-              ["no", "Sending our wishes"],
-            ].map(([value, label]) => (
-              <label
-                key={value}
-                className={`choice ${data.attendance === value ? "selected" : ""}`}
-              >
-                <input
-                  type="radio"
-                  name="attendance"
-                  value={value}
-                  checked={data.attendance === value}
-                  onChange={() =>
-                    setData({
-                      ...data,
-                      attendance: value as "yes" | "no",
-                      ...(value === "no" ? { guests: "1", celebrations: [], dietary: "" } : {}),
-                    })
-                  }
-                />
-                <span>{label}</span>
-              </label>
-            ))}
-          </div>
-        </fieldset>
-        <AnimatePresence initial={false}>
-          {attending && (
-            <motion.div
-              className="attending-fields"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-            >
-              <label className="field">
-                <span>Number of guests, including yourself</span>
-                <input
-                  type="number"
-                  min="1"
-                  inputMode="numeric"
-                  value={data.guests}
-                  onChange={(event) => setData({ ...data, guests: event.target.value })}
-                  aria-invalid={Boolean(errors.guests)}
-                />
-                {errors.guests && <small className="error">{errors.guests}</small>}
-              </label>
-              <fieldset>
-                <legend>Celebrations attending</legend>
-                <div className="choice-grid">
-                  {config.celebrations.map((event) => (
-                    <label
-                      className={`choice ${data.celebrations.includes(event.shortName) ? "selected" : ""}`}
-                      key={event.id}
-                    >
-                      <input
-                        type="checkbox"
-                        checked={data.celebrations.includes(event.shortName)}
-                        onChange={() => toggleCelebration(event.shortName)}
-                      />
-                      <span>{event.shortName}</span>
-                      {data.celebrations.includes(event.shortName) && <Check />}
-                    </label>
-                  ))}
-                </div>
-                {errors.celebrations && <small className="error">{errors.celebrations}</small>}
-              </fieldset>
-              <label className="field">
-                <span>
-                  Dietary requirements <em>Optional</em>
-                </span>
-                <input
-                  value={data.dietary}
-                  onChange={(event) => setData({ ...data, dietary: event.target.value })}
-                  placeholder="Please share any requirements"
-                />
-              </label>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <label className="field">
-          <span>
-            Message for Rishabh &amp; Khushi <em>Optional</em>
-          </span>
-          <textarea
-            rows={4}
-            value={data.message}
-            onChange={(event) => setData({ ...data, message: event.target.value })}
-            placeholder="Leave a note for the couple"
-          />
-        </label>
-        <button className="button button-submit focus-ring" type="submit">
-          <Send /> Prepare RSVP
-        </button>
-        <p className="form-note">Your message opens in WhatsApp for you to review and send.</p>
-      </form>
-
-      <Dialog.Root open={dialogOpen} onOpenChange={setDialogOpen}>
-        <Dialog.Portal>
-          <Dialog.Overlay className="dialog-overlay" />
-          <Dialog.Content className="dialog-content">
-            <Dialog.Close className="dialog-close focus-ring">
-              <X />
-              <span className="sr-only">Close</span>
-            </Dialog.Close>
-            <Dialog.Title>Review your RSVP</Dialog.Title>
-            <Dialog.Description>
-              {config.optional.whatsappHostNumber
-                ? "Review your message, then continue to WhatsApp. You will send it yourself."
-                : "No host number is configured yet. Copy this demo message to share it manually."}
-            </Dialog.Description>
-            <pre>{preview}</pre>
-            {config.optional.whatsappHostNumber ? (
-              <button
-                type="button"
-                className="button button-submit focus-ring"
-                onClick={sendWhatsApp}
-              >
-                <Send /> Continue to WhatsApp
-              </button>
-            ) : (
-              <button
-                type="button"
-                className="button button-submit focus-ring"
-                onClick={copyMessage}
-              >
-                {copied ? <Check /> : <Clipboard />}
-                {copied ? "Copied" : "Copy message"}
-              </button>
-            )}
-          </Dialog.Content>
-        </Dialog.Portal>
-      </Dialog.Root>
-    </>
+    </m.article>
   );
 }
 
@@ -737,14 +494,11 @@ export default function App() {
             )}
             <div className="hero-date"><time dateTime="2026-11-26">26 November 2026</time><span className="date-divider" aria-hidden="true" /><span>Jodhpur</span></div>
           </div>
-          <div className="hero-artwork" aria-hidden="true">
-            <img src={config.artwork} alt="" fetchPriority="high" />
-          </div>
         </section>
 
         <section className="family-section" id="invitation">
           <div className="edge-flower edge-flower-left" aria-hidden="true" />
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -770,7 +524,7 @@ export default function App() {
               <div><h3>With best wishes from:</h3><p>{config.wishesFrom}</p></div>
             </div>
             <Monogram />
-          </motion.div>
+          </m.div>
         </section>
 
         <section className="countdown-section">
