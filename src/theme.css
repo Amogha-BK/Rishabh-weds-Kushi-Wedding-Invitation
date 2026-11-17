@@ -104,6 +104,8 @@ footer .closing-copy > span,
 footer .contact-separator { color: #ffe0a5; }
 footer .closing-rule { background-color: #cba56c; }
 footer .closing-copy > .monogram {
+  width: 128px;
+  height: 128px;
   background-color: #fff3de;
   border: 1px solid #d5b58b;
   border-radius: 50%;
