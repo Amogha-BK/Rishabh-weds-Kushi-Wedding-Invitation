@@ -1,6 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="96" height="128" viewBox="0 0 96 128" fill="none">
-  <g stroke="#b88d57" stroke-width=".8" opacity=".23">
-    <path d="M48 0C48 21 0 14 0 32S48 43 48 64 96 78 96 96 48 107 48 128"/>
-    <path d="M48 0C48 21 96 14 96 32S48 43 48 64 0 78 0 96 48 107 48 128"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <path stroke="#b88d57" stroke-width=".65" opacity=".18" d="M32 0C32 8 24 8 24 16C16 16 16 24 8 24C8 32 0 32 0 32C0 32 8 32 8 40C16 40 16 48 24 48C24 56 32 56 32 64C32 56 40 56 40 48C48 48 48 40 56 40C56 32 64 32 64 32C64 32 56 32 56 24C48 24 48 16 40 16C40 8 32 8 32 0Z"/>
 </svg>

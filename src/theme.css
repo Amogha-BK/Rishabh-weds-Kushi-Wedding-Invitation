@@ -125,17 +125,17 @@ body,
 .wardrobe-section,
 .venue-section {
   background-image: url('/assets/invitation-paper-pattern.svg');
-  background-size: 96px 128px;
+  background-size: 52px 52px;
   background-repeat: repeat;
 }
 .hero {
   background-image: url('/assets/invitation-paper-pattern.svg'), radial-gradient(ellipse at 50% 36%, #f9edd7, transparent 65%), linear-gradient(180deg, #ecd5b3, #f1e2cc);
-  background-size: 96px 128px, auto, auto;
+  background-size: 52px 52px, auto, auto;
   background-repeat: repeat, no-repeat, no-repeat;
 }
 .hero-inner {
   background-image: url('/assets/invitation-paper-pattern.svg'), linear-gradient(135deg, #ecd6b5, #f6e7cc 48%, #eed8b9);
-  background-size: 96px 128px, auto;
+  background-size: 52px 52px, auto;
   background-repeat: repeat, no-repeat;
 }
 
